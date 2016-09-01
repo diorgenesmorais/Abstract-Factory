@@ -12,7 +12,7 @@ import com.dms.estados.Estado;
  * @author Diorgenes Morais
  * @version 1.0.0
  */
-public class NFe implements Serializable {
+public class NFe implements Serializable, NotaFiscal {
 
 	private static final long serialVersionUID = -8537220453744543467L;
 
@@ -23,6 +23,13 @@ public class NFe implements Serializable {
 
 	public NFe() {
 		this.setNumero(this.getNumeroDaNota());
+	}
+
+	public NFe(Integer numero, Date data, Estado estado, BigDecimal valorTotalProdutos) {
+		this.numero = numero;
+		this.data = data;
+		this.estado = estado;
+		this.valorTotalProdutos = valorTotalProdutos;
 	}
 
 	public Integer getNumero() {
@@ -82,27 +89,34 @@ public class NFe implements Serializable {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "NFe [numero=" + numero + ", data=" + data + ", estado=" + estado.getUf().getEstado() + ", valorTotalProdutos="
+				+ valorTotalProdutos + ", getTotalGeral()=" + getTotalGeral() + "]";
+	}
+
 	private Integer getNumeroDaNota() {
 		return (int) (Math.random() * 9) + 1;
 	}
 
-	/**
-	 * Obter o total de imposto desta nota.
-	 * 
-	 * @return valor {@code double} total de imposto.
-	 */
-	public double getTotalDeImposto() {
-		return getValorTotalProdutos().doubleValue() * estado.getPercentualImposto();
+	@Override
+	public Date getDataEmissao() {
+		return data;
 	}
 
-	/**
-	 * Obter o valor total desta nota, ou seja, valor total dos produtos + total
-	 * de imposto.
-	 * 
-	 * @return valor {@code double} total da nota.
-	 */
-	public double getTotalDaNota() {
-		return getValorTotalProdutos().add(new BigDecimal(getTotalDeImposto())).doubleValue();
+	@Override
+	public BigDecimal getTotalProduto() {
+		return valorTotalProdutos;
+	}
+
+	@Override
+	public BigDecimal getTotalImposto() {
+		return new BigDecimal(getValorTotalProdutos().doubleValue() * estado.getPercentualImposto());
+	}
+
+	@Override
+	public BigDecimal getTotalGeral() {
+		return getValorTotalProdutos().add(getTotalImposto());
 	}
 
 }
