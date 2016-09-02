@@ -5,7 +5,6 @@ import static org.junit.Assert.assertEquals;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import com.dms.NFe;
@@ -16,16 +15,13 @@ public class NFeTest {
 
 	private NFe notaFiscal;
 
-	@Before
-	public void init() {
-		notaFiscal = new NFe();
-	}
-
 	@Test
 	public void deveGerarUmaNotaFiscalComNumeroEntre_1_e_10() throws Exception {
-		notaFiscal = new NFe();
+		Integer numero = (int) (Math.random() * 9) + 1;
+		
+		notaFiscal = new NFe(numero, null, null, null);
 
-		Integer numero = notaFiscal.getNumero();
+		numero = notaFiscal.getNumero();
 
 		System.out.println("Número da nota: " + numero);
 

@@ -10,7 +10,7 @@ import com.dms.estados.Estado;
  * Está classe representa uma nota fiscal eletrônica simplificada
  * 
  * @author Diorgenes Morais
- * @version 1.0.0
+ * @version 1.0.3
  */
 public class NFe implements Serializable, NotaFiscal {
 
@@ -20,10 +20,6 @@ public class NFe implements Serializable, NotaFiscal {
 	private Date data;
 	private Estado estado;
 	private BigDecimal valorTotalProdutos;
-
-	public NFe() {
-		this.setNumero(this.getNumeroDaNota());
-	}
 
 	public NFe(Integer numero, Date data, Estado estado, BigDecimal valorTotalProdutos) {
 		this.numero = numero;
@@ -91,12 +87,8 @@ public class NFe implements Serializable, NotaFiscal {
 
 	@Override
 	public String toString() {
-		return "NFe [numero=" + numero + ", data=" + data + ", estado=" + estado.getUf().getEstado() + ", valorTotalProdutos="
-				+ valorTotalProdutos + ", getTotalGeral()=" + getTotalGeral() + "]";
-	}
-
-	private Integer getNumeroDaNota() {
-		return (int) (Math.random() * 9) + 1;
+		return "NFe [numero=" + numero + ", data=" + data + ", estado=" + estado.getUf().getEstado()
+				+ ", valorTotalProdutos=" + valorTotalProdutos + ", getTotalGeral()=" + getTotalGeral() + "]";
 	}
 
 	@Override

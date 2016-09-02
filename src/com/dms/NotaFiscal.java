@@ -14,7 +14,7 @@ public interface NotaFiscal {
 	/**
 	 * Obter o total de imposto desta nota.
 	 * 
-	 * @return valor {@code BigDecimal} total de imposto.
+	 * @return valor total de imposto em {@code BigDecimal}.
 	 */
 	public BigDecimal getTotalImposto();
 
@@ -22,7 +22,7 @@ public interface NotaFiscal {
 	 * Obter o valor total geral desta nota, ou seja, valor total dos produtos +
 	 * total de imposto.
 	 * 
-	 * @return valor {@code BigDecimal} total da nota.
+	 * @return valor total da nota em {@code BigDecimal}.
 	 */
 	public BigDecimal getTotalGeral();
 }
