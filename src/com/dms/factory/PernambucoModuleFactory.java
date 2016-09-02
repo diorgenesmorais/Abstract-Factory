@@ -1,8 +1,11 @@
-package com.dms;
+package com.dms.factory;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
+import com.dms.ModuleFactory;
+import com.dms.NFe;
+import com.dms.NotaFiscal;
 import com.dms.estados.PE;
 
 /**
